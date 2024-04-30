@@ -1,36 +1,68 @@
-<html lang="en">
+
+<!DOCTYPE html>
+<html lang="en" ng-app="ShoppingListCheckOff">
+
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	 <link rel="stylesheet" href="style.css">
-	<title>Responsive Layout</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Shopping List Check Off</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <style>
+    .emptyMessage {
+        font-weight: bold;
+        color: red;
+        font-size: 1.2em;
+    }
 
+    li {
+        margin-bottom: 7px;
+        font-size: 1.2em;
+    }
 
+    li > button {
+        margin-left: 6px;
+    }
+
+    button > span {
+        color: green;
+    }
+    </style>
 </head>
+
 <body>
-	<div class="row">
-	<h1>Our Menu</h1>
-  <div class="col-lg-4 col-md-6 col-sm-12" id="container">
-    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Repellendus ratione nobis voluptatem dicta iste neque iure, quia id tempora quam velit? Facilis distinctio laudantium quae, delectus perspiciatis voluptate esse beatae, laboriosam nemo, sint sequi totam repudiandae quidem dolorum vitae provident ea eum rem quasi porro? Omnis ipsa aspernatur, consequuntur et, ullam maiores non nisi magnam distinctio eos eatae, in iste quia repellendus culpa non rerum itaque illum sint aliquid mollitia fuga laudantium, cum eius ratione tempore excepturi, ipsum nihil aspernatur recusandae laboriosam blanditiis magni! Ex illo modi exercitationem consectetur incidunt autem adipisci eligendi corporis non, veniam ullam voluptatum nesciunt, maxime totam tenetur distinctio aperiam esse eum natus. Eaque nulla repudiandae aliquam maiores reiciendis temporibus perferendis. Adipisci dolorem perferendis et ipsa odio vitae sequi, ea, consequuntur aperiam officiis quae hic iure, quia maiores saepe architecto nostrum earum quo cumque minima quam debitis! Porro, id in at rerum ex qui facere, consequatur reprehenderit sequi eligendi numquam laborum sed. Hic incidunt debitis voluptatem ad minus ullam facilis facere eum. Nisi tenetur corporis illo explicabo vel iure aperiam sit quia natus magni, fuga itaque sed.</p>
-  	<p id="p1">Chicken</p>
-
-  	</div>
-
-  
-
-  <div class="col-lg-4 col-md-6 col-sm-12" id="container"><p>Lorem, ipsum dolor sit, amet consectetur adipisicing elit. Quis, iste, nostrum dignissimos unde officiis doloremque debitis fugit ut! Voluptate odit nam unde harum aliquam aperiam quibusdam quod corrupti provident pariatur!</p>
-
-  	<p id="p2">Beef</p>
-
-  </div>
-
-  <div class="col-lg-4 col-md-12 col-sm-12" id="container"><p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Molestiae obcaecati sint fugit. Sequi ullam itaque quibusdam, rerum ipsam quae nisi asperiores ipsa id? Dolorum minima, at accusamus earum illum molestias autem quisquam debitis! In illo temporibus autem ad esse animi est quibusdam maiores, molestias, eius voluptatibus possimus veniam dolor ullam repudiandae quam repellat qui consectetur, impedit at magnam incidunt? Quam, ipsam, vero saepe sequi dolor facilis eius officia vitae eos obcaecati aperiam? Voluptatem et sequi quam. Beatae nisi vero, doloremque amet eligendi laudantium consectetur mollitia dolorum doloribus accusamus et maiores necessitatibus, culpa aliquid corporis aperiam! Excepturi aspernatur quas quod non!.</p>
-
-  	<p  id="p3">Sushi</p>
-
-  </div>
-
-	</div>	
-
+    <div class="container">
+        <h1>Shopping List Check Off</h1>
+        <div class="row">
+            <!-- To Buy List -->
+            <div class="col-md-6" ng-controller="ToBuyController as toBuyList">
+                <h2>To Buy:</h2>
+                <ul>
+                    <li ng-repeat="item in toBuyList.items">Buy {{item.quantity}} {{item.name}}
+                        <button class="btn btn-default" ng-click="toBuyList.buyItem($index)"><span class="glyphicon glyphicon-ok"></span> Buy</button>
+                    </li>
+                </ul>
+                <div ng-if="toBuyList.items.length == 0" class="emptyMessage">Everything is bought!</div>
+            </div>
+            <!-- Already Bought List -->
+            <div class="col-md-6" ng-controller="AlreadyBoughtController as alreadyBoughtList">
+                <h2>Already Bought:</h2>
+                <ul>
+                    <li ng-repeat="item in alreadyBoughtList.items">Bought {{item.quantity}} {{item.name}}</li>
+                </ul>
+                <div ng-if="alreadyBoughtList.items.length == 0" class="emptyMessage">Nothing bought yet.</div>
+            </div>
+        </div>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.0/angular.min.js"></script>
+    <script src="app.js"></script>
 </body>
+
 </html>
